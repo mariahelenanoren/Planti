@@ -7,10 +7,14 @@ const useStyles = makeStyles((theme) => ({
     position: "fixed",
     width: "100%",
     height: "5rem",
+    backgroundColor: "#ffff",
+    zIndex: 100,
+  },
+  headerInner: {
+    height: "100%",
+    width: "100%",
     justifyContent: "space-between",
     alignItems: "center",
-    padding: "0 5rem",
-    backgroundColor: "#ffff",
     "& h1": {
       fontSize: "1.4rem",
     },
@@ -29,12 +33,21 @@ export default function Header() {
   const global = globalStyles();
 
   return (
-    <div className={classNames(classes.header, global.flex)}>
-      <h1>Planti</h1>
-      <div className={global.flex}>
-        <p>Hem</p>
-        <p>Dina växter</p>
-        <p>Artiklar</p>
+    <div className={classes.header}>
+      <div
+        className={classNames(
+          classes.headerInner,
+          global.flex,
+          global.maxWidth,
+          global.padding
+        )}
+      >
+        <h1>Planti</h1>
+        <div className={global.flex}>
+          <p>Hem</p>
+          <p>Dina växter</p>
+          <p>Artiklar</p>
+        </div>
       </div>
     </div>
   );
