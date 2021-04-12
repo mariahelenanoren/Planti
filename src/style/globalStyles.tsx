@@ -1,6 +1,6 @@
 import { makeStyles } from "@material-ui/core/styles";
 
-export const globalStyles = makeStyles({
+export const globalStyles = makeStyles((theme) => ({
   flex: {
     display: "flex",
   },
@@ -9,8 +9,17 @@ export const globalStyles = makeStyles({
   },
   maxWidth: {
     maxWidth: "100rem",
+    margin: "auto !important",
   },
   padding: {
+    [theme.breakpoints.down("xs")]: {
+      paddingRight: "1.5rem",
+      paddingLeft: "1.5rem",
+    },
+    [theme.breakpoints.down("sm")]: {
+      paddingRight: "3rem",
+      paddingLeft: "3rem",
+    },
     paddingRight: "5rem",
     paddingLeft: "5rem",
   },
@@ -22,4 +31,4 @@ export const globalStyles = makeStyles({
   textCenter: {
     textAlign: "center",
   },
-});
+}));

@@ -13,10 +13,18 @@ const useStyles = makeStyles((theme) => ({
     overflow: "hidden",
   },
   gridList: {
+    [theme.breakpoints.down("sm")]: {
+      flexDirection: "column",
+    },
     width: "100%",
     height: "auto",
     "& li": {
       padding: "0 !important",
+    },
+  },
+  gridListTile: {
+    [theme.breakpoints.down("sm")]: {
+      width: "100% !important",
     },
   },
   heroBox: {
@@ -47,11 +55,14 @@ export default function Hero() {
   const global = globalStyles();
   return (
     <div className={classNames(classes.root, global.maxWidth)}>
-      <GridList cellHeight={300} className={classes.gridList} cols={3}>
-        <GridListTile cols={2}>
+      <GridList cellHeight={300} className={classes.gridList} cols={5}>
+        <GridListTile className={classes.gridListTile} cols={3}>
           <img src="../../assets/hero.png" alt="hero" />
         </GridListTile>
-        <GridListTile cols={1} className={classes.heroBox}>
+        <GridListTile
+          cols={2}
+          className={classNames(classes.heroBox, classes.gridListTile)}
+        >
           <div
             className={classNames(
               classes.quoteContainer,
@@ -63,7 +74,11 @@ export default function Hero() {
               Planti
             </p>
             <p className={classNames(classes.quote, global.textCenter)}>
-              Alla dina växter<br></br>sparade på ett och<br></br>samma ställe
+              Alla dina växter
+              <br />
+              sparade på ett och
+              <br />
+              samma ställe
             </p>
           </div>
         </GridListTile>
