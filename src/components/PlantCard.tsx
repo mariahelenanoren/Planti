@@ -6,14 +6,16 @@ const useStyles = makeStyles({
     width: "100%",
     height: "100%",
     padding: "1rem",
+    display: "flex",
+    justifyContent: "space-between",
+    flexDirection: "column",
     backgroundColor: "#ffff",
     "& img": {
-      height: "80%",
-      width: "100%",
       objectFit: "contain",
+      height: "16rem",
     },
     "& h3": {
-      marginTop: "0.5rem",
+      margin: "0.5rem 0",
     },
   },
 });

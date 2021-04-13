@@ -7,8 +7,8 @@ import classNames from "classnames";
 
 const useStyles = makeStyles((theme) => ({
   plantsSection: {
-    paddingTop: "2rem",
-    paddingBottom: "2rem",
+    paddingTop: "1.5rem",
+    paddingBottom: "1.5rem",
   },
   sectionInner: {
     overflow: "hidden",
@@ -28,12 +28,8 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   cardContainer: {
-    height: "21rem",
-    width: "17rem",
-    [theme.breakpoints.down("sm")]: {
-      height: "20rem",
-      width: "15rem",
-    },
+    height: "100%",
+    width: "16rem",
   },
   buttonCard: {
     backgroundColor: theme.palette.secondary.main,

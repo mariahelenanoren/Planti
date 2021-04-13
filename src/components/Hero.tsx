@@ -1,40 +1,34 @@
-import GridList from "@material-ui/core/GridList";
-import GridListTile from "@material-ui/core/GridListTile";
 import { makeStyles } from "@material-ui/core/styles";
 import classNames from "classnames";
 import { globalStyles } from "../style/globalStyles";
 
 const useStyles = makeStyles((theme) => ({
   root: {
+    position: "relative",
     width: "100%",
     display: "flex",
-    flexWrap: "wrap",
-    justifyContent: "space-around",
-    overflow: "hidden",
-  },
-  gridList: {
     [theme.breakpoints.down("sm")]: {
       flexDirection: "column",
     },
+  },
+  heroImage: {
     width: "100%",
-    height: "auto",
-    "& li": {
-      padding: "0 !important",
-    },
-  },
-  gridListTile: {
-    [theme.breakpoints.down("sm")]: {
-      width: "100% !important",
-    },
-  },
-  heroBox: {
-    height: "100%",
-    backgroundColor: theme.palette.primary.main,
+    height: "22rem",
+    objectFit: "cover",
   },
   quoteContainer: {
-    position: "relative",
-    height: "100%",
-    flexDirection: "column",
+    position: "absolute",
+    right: 0,
+    backgroundColor: theme.palette.primary.main,
+    width: "26rem",
+    maxWidth: "100%",
+    height: "22rem",
+    zIndex: 1,
+    [theme.breakpoints.down("xs")]: {
+      position: "relative",
+      width: "100%",
+      height: "15rem",
+    },
   },
   author: {
     position: "absolute",
@@ -55,34 +49,27 @@ export default function Hero() {
   const global = globalStyles();
   return (
     <div className={classNames(classes.root, global.maxWidth)}>
-      <GridList cellHeight={300} className={classes.gridList} cols={5}>
-        <GridListTile className={classes.gridListTile} cols={3}>
-          <img src="../../assets/hero.png" alt="hero" />
-        </GridListTile>
-        <GridListTile
-          cols={2}
-          className={classNames(classes.heroBox, classes.gridListTile)}
-        >
-          <div
-            className={classNames(
-              classes.quoteContainer,
-              global.padding,
-              global.flexCenter
-            )}
-          >
-            <p className={classNames(classes.author, global.textCenter)}>
-              Planti
-            </p>
-            <p className={classNames(classes.quote, global.textCenter)}>
-              Alla dina växter
-              <br />
-              sparade på ett och
-              <br />
-              samma ställe
-            </p>
-          </div>
-        </GridListTile>
-      </GridList>
+      <img
+        className={classes.heroImage}
+        src="../../assets/hero.png"
+        alt="hero"
+      />
+      <div
+        className={classNames(
+          classes.quoteContainer,
+          global.padding,
+          global.flexCenter
+        )}
+      >
+        <p className={classNames(classes.author, global.textCenter)}>Planti</p>
+        <p className={classNames(classes.quote, global.textCenter)}>
+          Alla dina växter
+          <br />
+          sparade på ett och
+          <br />
+          samma ställe
+        </p>
+      </div>
     </div>
   );
 }
