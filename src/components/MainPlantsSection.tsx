@@ -9,43 +9,40 @@ const useStyles = makeStyles((theme) => ({
   plantsSection: {
     paddingTop: "2rem",
     paddingBottom: "2rem",
-    overflow: "hidden",
   },
   sectionInner: {
+    overflow: "hidden",
     [theme.breakpoints.down("sm")]: {
       flexDirection: "column",
     },
   },
-  noWrap: {
+  scrollContainer: {
+    overflowY: "hidden",
+    overflowX: "auto",
     flexWrap: "nowrap",
-  },
-  gridItem: {
-    [theme.breakpoints.down("sm")]: {
-      height: "19rem",
-      width: "16rem",
+    maxWidth: "100%",
+    "-ms-overflow-style": "none",
+    scrollbarWidth: "none",
+    "&::-webkit-scrollbar": {
+      display: "none",
     },
-    height: "22rem",
-    width: "18rem",
+  },
+  cardContainer: {
+    height: "21rem",
+    width: "17rem",
+    [theme.breakpoints.down("sm")]: {
+      height: "20rem",
+      width: "15rem",
+    },
   },
   buttonCard: {
     backgroundColor: theme.palette.secondary.main,
-    width: "100%",
-    height: "100%",
     "& p": {
       color: "#ffff",
       fontWeight: 700,
     },
     "&:hover": {
       backgroundColor: theme.palette.secondary.dark,
-    },
-  },
-  scrollContainer: {
-    overflowY: "hidden",
-    overflowX: "auto",
-    "-ms-overflow-style": "none",
-    scrollbarWidth: "none",
-    "&::-webkit-scrollbar": {
-      display: "none",
     },
   },
   headline: {
@@ -74,34 +71,31 @@ export default function MainPlantsSection() {
       >
         <h2 className={classNames(classes.headline)}>Dina Växter</h2>
         <Grid
-          className={classNames(classes.scrollContainer)}
           container
-          spacing={2}
+          className={classNames(global.flex, classes.scrollContainer)}
+          spacing={3}
         >
-          <Grid item>
-            <Grid
-              className={classes.noWrap}
-              container
-              justify="flex-start"
-              spacing={3}
-            >
-              {plants.map((plant) => (
-                <Grid className={classes.gridItem} key={plant.id} item>
-                  <PlantCard name={plant.name} imageUrl={plant.imageUrl} />
-                </Grid>
-              ))}
-              <Grid className={classes.gridItem} item>
-                <div
-                  className={classNames(classes.buttonCard, global.flexCenter)}
-                >
-                  <p className={global.textCenter}>
-                    Se alla
-                    <br />
-                    dina växter
-                  </p>
-                </div>
-              </Grid>
+          {plants.map((plant) => (
+            <Grid key={plant.id} item>
+              <div className={classes.cardContainer}>
+                <PlantCard name={plant.name} imageUrl={plant.imageUrl} />
+              </div>
             </Grid>
+          ))}
+          <Grid item>
+            <div
+              className={classNames(
+                classes.buttonCard,
+                classes.cardContainer,
+                global.flexCenter
+              )}
+            >
+              <p className={global.textCenter}>
+                Se alla
+                <br />
+                dina växter
+              </p>
+            </div>
           </Grid>
         </Grid>
       </div>

@@ -12,6 +12,9 @@ const useStyles = makeStyles({
       width: "100%",
       objectFit: "contain",
     },
+    "& h3": {
+      marginTop: "0.5rem",
+    },
   },
 });
 

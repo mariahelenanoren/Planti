@@ -5,13 +5,13 @@ import classNames from "classnames";
 const useStyles = makeStyles((theme) => ({
   footer: {
     width: "100%",
-    padding: "2rem 0",
     backgroundColor: "#ffff",
     zIndex: 100,
   },
   footerInner: {
     height: "100%",
     width: "100%",
+    padding: "2rem 0",
     flexDirection: "column",
     justifyContent: "space-between",
     "& h2": {
@@ -35,13 +35,12 @@ export default function Footer() {
   const global = globalStyles();
 
   return (
-    <div className={classes.footer}>
+    <div className={classNames(classes.footer, global.padding)}>
       <div
         className={classNames(
           classes.footerInner,
           global.flex,
-          global.maxWidth,
-          global.padding
+          global.maxWidth
         )}
       >
         <h2>Planti</h2>
