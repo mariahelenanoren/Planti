@@ -6,7 +6,6 @@ const useStyles = makeStyles((theme) => ({
   footer: {
     width: "100%",
     backgroundColor: "#ffff",
-    zIndex: 100,
   },
   footerInner: {
     height: "100%",

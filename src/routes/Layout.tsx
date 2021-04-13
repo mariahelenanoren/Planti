@@ -1,11 +1,15 @@
 import Header from "../components/Header";
 import MainRoute from "./MainRoute";
 import Footer from "../components/Footer";
+import MobileNavigation from "../components/MobileNavigation";
+import { useState } from "react";
 
 export default function Layout() {
+  const [menuIsOpen, setMenuIsOpen] = useState(false);
   return (
     <>
-      <Header />
+      <MobileNavigation isOpen={menuIsOpen} />
+      <Header menuIsOpen={menuIsOpen} setMenuIsOpen={setMenuIsOpen} />
       <MainRoute />
       <Footer />
     </>

@@ -6,7 +6,7 @@ import { globalStyles } from "../style/globalStyles";
 import classNames from "classnames";
 
 const useStyles = makeStyles((theme) => ({
-  plantsSection: {
+  plantSection: {
     paddingTop: "1.5rem",
     paddingBottom: "1.5rem",
   },
@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
   },
   cardContainer: {
     height: "100%",
-    width: "16rem",
+    width: "14rem",
   },
   buttonCard: {
     backgroundColor: theme.palette.secondary.main,
@@ -52,12 +52,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function MainPlantsSection() {
+export default function MainPlantSection() {
   const classes = useStyles();
   const global = globalStyles();
 
   return (
-    <div className={classNames(classes.plantsSection, global.padding)}>
+    <div className={classNames(classes.plantSection, global.padding)}>
       <div
         className={classNames(
           classes.sectionInner,

@@ -12,13 +12,13 @@ export const globalStyles = makeStyles((theme) => ({
     margin: "auto !important",
   },
   padding: {
-    [theme.breakpoints.down("xs")]: {
-      paddingRight: "1.5rem",
-      paddingLeft: "1.5rem",
-    },
     [theme.breakpoints.down("sm")]: {
       paddingRight: "3rem",
       paddingLeft: "3rem",
+    },
+    [theme.breakpoints.down("xs")]: {
+      paddingRight: "2rem",
+      paddingLeft: "2rem",
     },
     paddingRight: "5rem",
     paddingLeft: "5rem",

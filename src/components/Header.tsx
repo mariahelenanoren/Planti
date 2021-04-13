@@ -1,5 +1,6 @@
 import { makeStyles } from "@material-ui/core/styles";
 import { globalStyles } from "../style/globalStyles";
+import { Menu } from "@material-ui/icons";
 import classNames from "classnames";
 import { Hidden } from "@material-ui/core";
 
@@ -7,8 +8,8 @@ const useStyles = makeStyles((theme) => ({
   header: {
     position: "fixed",
     width: "100%",
-    height: "5rem",
     backgroundColor: "#ffff",
+    height: "5rem",
     zIndex: 100,
   },
   headerInner: {
@@ -22,14 +23,25 @@ const useStyles = makeStyles((theme) => ({
     "& p": {
       padding: "0 3rem",
       borderLeft: `1px ${theme.palette.text.secondary} solid`,
+      "&:hover": {
+        textDecoration: "underline",
+      },
       "&:last-of-type": {
         paddingRight: "0",
       },
     },
   },
+  menuIcon: {
+    fontSize: "2rem",
+  },
 }));
 
-export default function Header() {
+interface Props {
+  setMenuIsOpen: (isOpen: React.SetStateAction<boolean>) => void;
+  menuIsOpen: boolean;
+}
+
+export default function Header(props: Props) {
   const classes = useStyles();
   const global = globalStyles();
 
@@ -44,6 +56,12 @@ export default function Header() {
       >
         <h1>Planti</h1>
         <div className={global.flex}>
+          <Hidden mdUp>
+            <Menu
+              className={classes.menuIcon}
+              onClick={() => props.setMenuIsOpen(!props.menuIsOpen)}
+            />
+          </Hidden>
           <Hidden smDown>
             <p>Hem</p>
             <p>Dina växter</p>
