@@ -4,6 +4,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { globalStyles } from "../style/globalStyles";
 import classNames from "classnames";
 import MainPlantsSection from "./MainPlantsSection";
+import MainArticleSection from "./MainArticleSection";
 
 const useStyles = makeStyles((theme) => ({
   main: {
@@ -20,6 +21,7 @@ export default function MainView() {
       <Hero />
       <div className={classes.main}>
         <MainPlantsSection />
+        <MainArticleSection />
       </div>
     </>
   );
