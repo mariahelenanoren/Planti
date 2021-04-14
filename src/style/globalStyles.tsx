@@ -31,4 +31,8 @@ export const globalStyles = makeStyles((theme) => ({
   textCenter: {
     textAlign: "center",
   },
+  link: {
+    color: "inherit",
+    textDecoration: "inherit",
+  },
 }));

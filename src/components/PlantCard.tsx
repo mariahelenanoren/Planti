@@ -1,5 +1,7 @@
 import { makeStyles } from "@material-ui/core/styles";
+import { Link } from "react-router-dom";
 import { globalStyles } from "../style/globalStyles";
+import { Plant } from "../helper";
 
 const useStyles = makeStyles({
   card: {
@@ -21,8 +23,7 @@ const useStyles = makeStyles({
 });
 
 interface Props {
-  name: string;
-  imageUrl: string;
+  plant: Plant;
 }
 
 export default function PlantCard(props: Props) {
@@ -30,9 +31,11 @@ export default function PlantCard(props: Props) {
   const global = globalStyles();
 
   return (
-    <div className={classes.card}>
-      <img alt={props.name} src={props.imageUrl} />
-      <h3 className={global.textCenter}>{props.name}</h3>
-    </div>
+    <Link to={`/plants/${props.plant.id}`} className={global.link}>
+      <div className={classes.card}>
+        <img alt={props.plant.name} src={props.plant.imageUrl} />
+        <h3 className={global.textCenter}>{props.plant.name}</h3>
+      </div>
+    </Link>
   );
 }

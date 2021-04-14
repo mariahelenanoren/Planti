@@ -2,6 +2,7 @@ import { makeStyles } from "@material-ui/core";
 import classNames from "classnames";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import MainView from "../components/MainView";
+import PlantView from "../components/PlantView";
 import { globalStyles } from "../style/globalStyles";
 
 const useStyles = makeStyles({
@@ -18,6 +19,7 @@ export default function MainRoute() {
       <Router>
         <Switch>
           <Route exact path="/" component={MainView} />
+          <Route exact path="/plants/:id" component={PlantView} />
         </Switch>
       </Router>
     </div>

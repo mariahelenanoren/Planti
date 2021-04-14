@@ -1,9 +1,10 @@
 import PlantCard from "./PlantCard";
 import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
-import { plants } from "../plants.json";
 import { globalStyles } from "../style/globalStyles";
 import classNames from "classnames";
+import { makeRequest, Plant } from "../helper";
+import { useEffect, useState } from "react";
 
 const useStyles = makeStyles((theme) => ({
   plantSection: {
@@ -55,6 +56,17 @@ const useStyles = makeStyles((theme) => ({
 export default function MainPlantSection() {
   const classes = useStyles();
   const global = globalStyles();
+  const [plants, setPlants] = useState<Plant[]>();
+
+  const fetchPlants = async () => {
+    const response = await makeRequest(`/api/plants`, "GET");
+    const savedPlants = await response;
+    setPlants(savedPlants);
+  };
+
+  useEffect(() => {
+    fetchPlants();
+  }, []);
 
   return (
     <div className={classNames(classes.plantSection, global.padding)}>
@@ -71,10 +83,10 @@ export default function MainPlantSection() {
           className={classNames(global.flex, classes.scrollContainer)}
           spacing={3}
         >
-          {plants.map((plant) => (
+          {plants?.map((plant) => (
             <Grid key={plant.id} item>
               <div className={classes.cardContainer}>
-                <PlantCard name={plant.name} imageUrl={plant.imageUrl} />
+                <PlantCard plant={plant} />
               </div>
             </Grid>
           ))}
