@@ -1,12 +1,13 @@
 const { plants } = require("./plants.json");
+const path = require("path");
 const express = require("express");
 const app = express();
 
 const hostname = "localhost";
-const port = 3000;
+const port = 3001;
 
 app.use(express.json());
-app.use(express.static(__dirname + "/build"));
+/* app.use(express.static(__dirname + "/build")); */
 
 app.get("/api/plants", (req, res) => {
   res.json(plants);
@@ -37,6 +38,10 @@ app.delete("/api/plants", (req, res) => {
   const index = plants.findIndex((plant) => plant.id === deletedPlant.id);
   plants.splice(index, 1);
   res.json(plants);
+});
+
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "build", "index.html"));
 });
 
 app.listen(port, () => {
