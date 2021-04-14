@@ -32,6 +32,12 @@ const useStyles = makeStyles((theme) => ({
     },
     "& form": {
       flexDirection: "column",
+      "& .MuiInput-root": {
+        marginBottom: "1rem",
+      },
+      "& button": {
+        marginTop: "1rem",
+      },
     },
   },
 }));
@@ -102,7 +108,7 @@ export default function MainView(props: Props) {
                 />
                 <TextField
                   value={plant.imageUrl}
-                  label="Bild-URL"
+                  label="Bild-url"
                   onChange={(e) => handleChange("imageURL", e.target.value)}
                   InputLabelProps={{ shrink: true }}
                 />

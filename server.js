@@ -23,7 +23,7 @@ app.post("/api/plants", (req, res) => {
   const newPlant = req.body;
   newPlant.id = plants[plants.length - 1].id + 1;
   plants.push(newPlant);
-  res.json(plants);
+  res.json(newPlant);
 });
 
 app.put("/api/plants", (req, res) => {

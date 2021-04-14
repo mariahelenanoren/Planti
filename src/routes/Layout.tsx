@@ -1,15 +1,15 @@
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import classNames from "classnames";
+import { makeStyles } from "@material-ui/core";
+import { globalStyles } from "../style/globalStyles";
+import { useState } from "react";
+import MobileNavigation from "../components/MobileNavigation";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import MobileNavigation from "../components/MobileNavigation";
-import { useState } from "react";
-
-import { makeStyles } from "@material-ui/core";
-import classNames from "classnames";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import MainView from "./MainView";
 import PlantView from "./PlantView";
-import { globalStyles } from "../style/globalStyles";
 import EditView from "./EditView";
+import CreateView from "./CreateView";
 
 const useStyles = makeStyles({
   main: {
@@ -29,8 +29,9 @@ export default function MainRoute() {
         <div className={classNames(global.flex1, classes.main)}>
           <Switch>
             <Route exact path="/" component={MainView} />
+            <Route exact path="/plants/create" component={CreateView} />
             <Route exact path="/plants/:id" component={PlantView} />
-            <Route exact path="/plants/:id/edit" component={EditView} />
+            <Route path="/plants/:id/edit" component={EditView} />
           </Switch>
         </div>
         <Footer />

@@ -33,6 +33,7 @@ const useStyles = makeStyles((theme) => ({
     width: "14rem",
   },
   buttonCard: {
+    minHeight: "10rem",
     backgroundColor: theme.palette.secondary.main,
     "& p": {
       color: "#ffff",
