@@ -1,8 +1,8 @@
 import { makeStyles } from "@material-ui/core";
 import classNames from "classnames";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import MainView from "../components/MainView";
-import PlantView from "../components/PlantView";
+import MainView from "./MainView";
+import PlantView from "./PlantView";
 import { globalStyles } from "../style/globalStyles";
 
 const useStyles = makeStyles({
