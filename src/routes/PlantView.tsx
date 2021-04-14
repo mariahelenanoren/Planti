@@ -1,11 +1,12 @@
-import { makeStyles } from "@material-ui/core";
+import { Button, makeStyles } from "@material-ui/core";
 import { globalStyles } from "../style/globalStyles";
 import classNames from "classnames";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { RouteComponentProps } from "react-router";
 import { makeRequest } from "../helper";
 import { Plant } from "../helper";
 import Grid from "@material-ui/core/Grid";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   plantContainer: {
@@ -13,6 +14,7 @@ const useStyles = makeStyles((theme) => ({
     paddingBottom: "2rem",
   },
   imageContainer: {
+    flex: 1,
     backgroundColor: "#ffff",
     padding: "2rem",
     "& img": {
@@ -21,12 +23,31 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   descriptionContainer: {
+    flexDirection: "column",
     flex: 1,
     backgroundColor: "#ffff",
     padding: "2rem",
     "& h2": {
       fontSize: "1.4rem",
       marginTop: 0,
+    },
+    "& hr": {
+      margin: 0,
+      border: 0,
+      borderTop: `1px ${theme.palette.text.primary} solid`,
+      width: "100%",
+    },
+  },
+  buttonContainer: {
+    flex: 1,
+    marginTop: "1rem",
+    alignItems: "flex-end",
+    "& button": {
+      borderRadius: 0,
+      paddingTop: "0.5rem",
+      "&:first-of-type": {
+        marginRight: "1rem",
+      },
     },
   },
   dataType: {
@@ -51,6 +72,14 @@ export default function PlantView(props: Props) {
   const id = props.match.params.id;
   const [plant, setPlant] = useState<Plant>();
 
+  const handleClick = async () => {
+    const response = await makeRequest(`/api/plants`, "DELETE", { id: id });
+    const status = await response;
+    if (status) {
+      window.location.assign("/");
+    }
+  };
+
   useEffect(() => {
     const fetchPlant = async () => {
       const response = await makeRequest(`/api/plants/${id}`, "GET");
@@ -67,8 +96,10 @@ export default function PlantView(props: Props) {
         spacing={3}
         className={classNames(classes.plantContainer, global.maxWidth)}
       >
-        <Grid item xs={12} md={6}>
-          <div className={classes.imageContainer}>
+        <Grid item xs={12} md={6} className={global.flex}>
+          <div
+            className={classNames(classes.imageContainer, global.flexCenter)}
+          >
             <img alt={plant?.name} src={plant?.imageUrl} />
           </div>
         </Grid>
@@ -82,14 +113,30 @@ export default function PlantView(props: Props) {
             classes.plantContainer
           )}
         >
-          <div className={classNames(classes.descriptionContainer)}>
+          <div
+            className={classNames(global.flex, classes.descriptionContainer)}
+          >
             <h2 className={global.textCenter}>{plant?.name}</h2>
             <p className={classes.dataType}>Höjd</p>
             <hr />
             <p className={classes.data}>{plant?.height + " cm"}</p>
-            <p className={classes.dataType}>Description</p>
+            <p className={classes.dataType}>Beskrivning</p>
             <hr />
             <p className={classes.data}>{plant?.description}</p>
+            <div className={classNames(classes.buttonContainer, global.flex)}>
+              <Link to={`/plants/${id}/edit`} className={global.link}>
+                <Button variant={"contained"} color={"primary"}>
+                  Ändra växt
+                </Button>
+              </Link>
+              <Button
+                variant={"contained"}
+                color={"secondary"}
+                onClick={handleClick}
+              >
+                Ta bort
+              </Button>
+            </div>
           </div>
         </Grid>
       </Grid>

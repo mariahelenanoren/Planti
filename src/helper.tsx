@@ -1,7 +1,7 @@
 export interface Plant {
   name: string;
   imageUrl: string;
-  height: number;
+  height: string;
   description: string;
   id: number;
 }

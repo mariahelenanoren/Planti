@@ -3,6 +3,7 @@ import { globalStyles } from "../style/globalStyles";
 import { Menu } from "@material-ui/icons";
 import classNames from "classnames";
 import { Hidden } from "@material-ui/core";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   header: {
@@ -20,14 +21,16 @@ const useStyles = makeStyles((theme) => ({
     "& h1": {
       fontSize: "1.4rem",
     },
+    "& a": {
+      "&:last-of-type": {
+        paddingRight: "0",
+      },
+    },
     "& p": {
       padding: "0 3rem",
       borderLeft: `1px ${theme.palette.text.secondary} solid`,
       "&:hover": {
         textDecoration: "underline",
-      },
-      "&:last-of-type": {
-        paddingRight: "0",
       },
     },
   },
@@ -54,7 +57,9 @@ export default function Header(props: Props) {
           global.maxWidth
         )}
       >
-        <h1>Planti</h1>
+        <Link to={"/"} className={global.link}>
+          <h1>Planti</h1>
+        </Link>
         <div className={global.flex}>
           <Hidden mdUp>
             <Menu
@@ -63,7 +68,9 @@ export default function Header(props: Props) {
             />
           </Hidden>
           <Hidden smDown>
-            <p>Hem</p>
+            <Link to={"/"} className={global.link}>
+              <p>Hem</p>
+            </Link>
             <p>Dina växter</p>
             <p>Artiklar</p>
           </Hidden>

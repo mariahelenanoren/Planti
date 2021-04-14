@@ -2,6 +2,7 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import classNames from "classnames";
 import { globalStyles } from "../style/globalStyles";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   menu: {
@@ -50,7 +51,9 @@ export default function MobileMenu(props: Props) {
     >
       <nav>
         <ul>
-          <li>Hem</li>
+          <Link to={"/"} className={global.link}>
+            <li>Hem</li>
+          </Link>
           <li>Dina växter</li>
           <li>Artiklar</li>
         </ul>
