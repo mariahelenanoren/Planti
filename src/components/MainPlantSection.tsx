@@ -4,7 +4,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import { globalStyles } from "../style/globalStyles";
 import classNames from "classnames";
 import { makeRequest, Plant } from "../helper";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   plantSection: {
@@ -92,19 +93,21 @@ export default function MainPlantSection() {
             </Grid>
           ))}
           <Grid item>
-            <div
-              className={classNames(
-                classes.buttonCard,
-                classes.cardContainer,
-                global.flexCenter
-              )}
-            >
-              <p className={global.textCenter}>
-                Se alla
-                <br />
-                dina växter
-              </p>
-            </div>
+            <Link to="/plants" className={global.link}>
+              <div
+                className={classNames(
+                  classes.buttonCard,
+                  classes.cardContainer,
+                  global.flexCenter
+                )}
+              >
+                <p className={global.textCenter}>
+                  Se alla
+                  <br />
+                  dina växter
+                </p>
+              </div>
+            </Link>
           </Grid>
         </Grid>
       </div>

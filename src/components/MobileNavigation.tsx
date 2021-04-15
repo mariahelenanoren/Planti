@@ -54,7 +54,9 @@ export default function MobileMenu(props: Props) {
           <Link to={"/"} className={global.link}>
             <li>Hem</li>
           </Link>
-          <li>Dina växter</li>
+          <Link to={"/plants"} className={global.link}>
+            <li>Dina växter</li>
+          </Link>
           <li>Artiklar</li>
         </ul>
       </nav>
