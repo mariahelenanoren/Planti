@@ -13,12 +13,18 @@ const useStyles = makeStyles({
     flexDirection: "column",
     backgroundColor: "#ffff",
     "& img": {
+      width: "100%",
       objectFit: "contain",
-      height: "16rem",
+      height: "auto",
     },
     "& h3": {
-      margin: "0.5rem 0",
+      margin: "0.5rem 0 0 0",
     },
+  },
+  imageContainer: {
+    flex: 1,
+    display: "flex",
+    alignItems: "center",
   },
 });
 
@@ -33,7 +39,9 @@ export default function PlantCard(props: Props) {
   return (
     <Link to={`/plants/${props.plant.id}`} className={global.link}>
       <div className={classes.card}>
-        <img alt={props.plant.name} src={props.plant.imageUrl} />
+        <div className={classes.imageContainer}>
+          <img alt={props.plant.name} src={props.plant.imageUrl} />
+        </div>
         <h3 className={global.textCenter}>{props.plant.name}</h3>
       </div>
     </Link>

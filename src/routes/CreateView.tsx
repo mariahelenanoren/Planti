@@ -42,6 +42,7 @@ export default function MainView() {
   });
 
   const handleChange = (key: string, value: string) => {
+    console.log(key, value);
     setPlant((prevState) => ({
       ...prevState,
       [key]: value,
@@ -77,7 +78,7 @@ export default function MainView() {
           <TextField
             value={plant.imageUrl}
             label="Bild-url"
-            onChange={(e) => handleChange("imageURL", e.target.value)}
+            onChange={(e) => handleChange("imageUrl", e.target.value)}
           />
           <TextField
             value={Number(plant.height) || ""}

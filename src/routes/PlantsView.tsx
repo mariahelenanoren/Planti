@@ -14,9 +14,10 @@ const useStyles = makeStyles((theme) => ({
   },
   cardContainer: {
     height: "100%",
-    width: "14rem",
+    width: "100%",
   },
   buttonCard: {
+    padding: "2rem",
     minHeight: "10rem",
     backgroundColor: theme.palette.primary.main,
     "& p": {
@@ -48,7 +49,7 @@ export default function PlantsView() {
     <div className={classNames(classes.plantsContainer, global.padding)}>
       <div className={classNames(global.maxWidth)}>
         <Grid container spacing={3}>
-          <Grid item xs={12} sm={4} md={3}>
+          <Grid item xs={6} sm={4} md={3}>
             <div
               className={classNames(
                 classes.buttonCard,
@@ -62,7 +63,7 @@ export default function PlantsView() {
             </div>
           </Grid>
           {plants?.map((plant) => (
-            <Grid item xs={12} sm={4} md={3} key={plant.id}>
+            <Grid item xs={6} sm={4} md={3} key={plant.id}>
               <div className={classes.cardContainer}>
                 <PlantCard plant={plant} />
               </div>

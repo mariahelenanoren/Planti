@@ -34,6 +34,7 @@ const useStyles = makeStyles((theme) => ({
     width: "14rem",
   },
   buttonCard: {
+    padding: "2rem",
     minHeight: "10rem",
     backgroundColor: theme.palette.secondary.main,
     "& p": {

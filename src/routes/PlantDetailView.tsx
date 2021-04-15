@@ -58,6 +58,9 @@ const useStyles = makeStyles((theme) => ({
   data: {
     textAlign: "right",
   },
+  defaultImage: {
+    filter: "saturate(0) opacity(0.2)",
+  },
 }));
 
 interface Params {
@@ -66,7 +69,7 @@ interface Params {
 
 interface Props extends RouteComponentProps<Params> {}
 
-export default function PlantView(props: Props) {
+export default function PlantDetailView(props: Props) {
   const classes = useStyles();
   const global = globalStyles();
   const id = props.match.params.id;
@@ -100,7 +103,17 @@ export default function PlantView(props: Props) {
           <div
             className={classNames(classes.imageContainer, global.flexCenter)}
           >
-            <img alt={plant?.name} src={plant?.imageUrl} />
+            {plant?.imageUrl ? (
+              <img alt={plant?.name || "En växt"} src={plant?.imageUrl} />
+            ) : (
+              <img
+                alt="En växt"
+                className={classes.defaultImage}
+                src={
+                  "https://images.unsplash.com/photo-1597305877032-0668b3c6413a?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+                }
+              />
+            )}
           </div>
         </Grid>
         <Grid
@@ -117,12 +130,20 @@ export default function PlantView(props: Props) {
             className={classNames(global.flex, classes.descriptionContainer)}
           >
             <h2 className={global.textCenter}>{plant?.name}</h2>
-            <p className={classes.dataType}>Höjd</p>
-            <hr />
-            <p className={classes.data}>{plant?.height + " cm"}</p>
-            <p className={classes.dataType}>Beskrivning</p>
-            <hr />
-            <p className={classes.data}>{plant?.description}</p>
+            {plant?.height ? (
+              <>
+                <p className={classes.dataType}>Höjd</p>
+                <hr />
+                <p className={classes.data}>{plant?.height + " cm"}</p>
+              </>
+            ) : null}
+            {plant?.description ? (
+              <>
+                <p className={classes.dataType}>Beskrivning</p>
+                <hr />
+                <p className={classes.data}>{plant?.description}</p>
+              </>
+            ) : null}
             <div className={classNames(classes.buttonContainer, global.flex)}>
               <Link to={`/plants/${id}/edit`} className={global.link}>
                 <Button variant={"contained"} color={"primary"}>
