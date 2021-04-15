@@ -30,6 +30,9 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   cardContainer: {
+    [theme.breakpoints.down("sm")]: {
+      width: "10rem",
+    },
     height: "100%",
     width: "14rem",
   },

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { globalStyles } from "../style/globalStyles";
 import { Plant } from "../helper";
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   card: {
     width: "100%",
     height: "100%",
@@ -13,9 +13,12 @@ const useStyles = makeStyles({
     flexDirection: "column",
     backgroundColor: "#ffff",
     "& img": {
+      [theme.breakpoints.down("xs")]: {
+        height: "10rem",
+      },
       width: "100%",
+      height: "14rem",
       objectFit: "contain",
-      height: "auto",
     },
     "& h3": {
       margin: "0.5rem 0 0 0",
@@ -26,7 +29,7 @@ const useStyles = makeStyles({
     display: "flex",
     alignItems: "center",
   },
-});
+}));
 
 interface Props {
   plant: Plant;

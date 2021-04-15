@@ -46,9 +46,9 @@ export default function Footer() {
         <hr />
 
         <div className={classNames(classes.itemContainer)}>
-          <p>Hem</p>
-          <p>Dina växter</p>
-          <p>Artiklar</p>
+          <p>Om Planti</p>
+          <p>FAQ</p>
+          <p>Kontakta oss</p>
         </div>
       </div>
     </div>

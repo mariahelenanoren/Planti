@@ -11,6 +11,9 @@ const useStyles = makeStyles((theme) => ({
   plantsContainer: {
     paddingTop: "2rem",
     paddingBottom: "2rem",
+    "& h2": {
+      fontSize: "1.4rem",
+    },
   },
   cardContainer: {
     height: "100%",
@@ -48,6 +51,7 @@ export default function PlantsView() {
   return (
     <div className={classNames(classes.plantsContainer, global.padding)}>
       <div className={classNames(global.maxWidth)}>
+        <h2 className={global.textCenter}>Dina Växter</h2>
         <Grid container spacing={3}>
           <Grid item xs={6} sm={4} md={3}>
             <div
