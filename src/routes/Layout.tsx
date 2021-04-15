@@ -25,7 +25,10 @@ export default function MainRoute() {
   return (
     <>
       <Router>
-        <MobileNavigation isOpen={menuIsOpen} />
+        <MobileNavigation
+          menuIsOpen={menuIsOpen}
+          setMenuIsOpen={setMenuIsOpen}
+        />
         <Header menuIsOpen={menuIsOpen} setMenuIsOpen={setMenuIsOpen} />
         <div className={classNames(global.flex1, classes.main)}>
           <Switch>

@@ -37,24 +37,29 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 interface Props {
-  isOpen: boolean;
+  setMenuIsOpen: (isOpen: React.SetStateAction<boolean>) => void;
+  menuIsOpen: boolean;
 }
 
 export default function MobileMenu(props: Props) {
   const classes = useStyles();
   const global = globalStyles();
 
+  const handleClick = () => {
+    props.setMenuIsOpen(!props.menuIsOpen);
+  };
+
   return (
     <div
-      style={{ left: props.isOpen ? 0 : "-100%" }}
+      style={{ left: props.menuIsOpen ? 0 : "-100%" }}
       className={classNames(classes.menu, global.padding)}
     >
       <nav>
         <ul>
-          <Link to={"/"} className={global.link}>
+          <Link to={"/"} className={global.link} onClick={handleClick}>
             <li>Hem</li>
           </Link>
-          <Link to={"/plants"} className={global.link}>
+          <Link to={"/plants"} className={global.link} onClick={handleClick}>
             <li>Dina växter</li>
           </Link>
           <li>Artiklar</li>
