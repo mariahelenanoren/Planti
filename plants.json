@@ -20,6 +20,13 @@
       "height": "75",
       "description": "Trendig planta med fiolformade, blanka och stora blad. En populär och lättskött planta som trivs i ljusa förhållanden, undvik direkt solljus. Låt den torka lätt mellan vattningarna.",
       "id": 3
+    },
+    {
+      "name": "Kalamondin",
+      "imageUrl": "https://www.plantagen.se/dw/image/v2/BCMR_PRD/on/demandware.static/-/Sites-inriver-catalog/default/dwa9dc66bc/images/large/7058782376106(1).jpg?sh=1236&sfrm=jpg",
+      "height": "65",
+      "description": "Härlig citrus på stam med ovala, glansiga blad och vita väldoftande blommor. Små alldeles runda, ätliga, syrliga frukter. Trivs i ljust läge, även i direkt sol, i väldränerad jord med lågt pH.",
+      "id": 4
     }
   ]
 }
