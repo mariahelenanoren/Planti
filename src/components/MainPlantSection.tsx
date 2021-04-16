@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
   },
   buttonCard: {
     padding: "2rem",
-    minHeight: "10rem",
+    minHeight: "16rem",
     backgroundColor: theme.palette.secondary.main,
     "& p": {
       color: "#ffff",
@@ -89,13 +89,15 @@ export default function MainPlantSection() {
           className={classNames(global.flex, classes.scrollContainer)}
           spacing={3}
         >
-          {plants?.map((plant) => (
-            <Grid key={plant.id} item>
-              <div className={classes.cardContainer}>
-                <PlantCard plant={plant} />
-              </div>
-            </Grid>
-          ))}
+          {plants
+            ?.filter((plant, id) => id < 6)
+            .map((plant) => (
+              <Grid key={plant.id} item>
+                <div className={classes.cardContainer}>
+                  <PlantCard plant={plant} />
+                </div>
+              </Grid>
+            ))}
           <Grid item>
             <Link to="/plants" className={global.link}>
               <div

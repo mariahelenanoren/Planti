@@ -87,6 +87,7 @@ export default function MainView() {
               <h2 className={global.textCenter}>Skapa ny växt</h2>
               <form className={global.flex} onSubmit={(e) => handleSubmit(e)}>
                 <TextField
+                  required
                   value={plant.name}
                   label="Namn"
                   onChange={(e) => handleChange("name", e.target.value)}

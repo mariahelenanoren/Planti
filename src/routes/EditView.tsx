@@ -104,6 +104,7 @@ export default function MainView(props: Props) {
               <h2 className={global.textCenter}>Ändra {plant?.name}</h2>
               <form className={global.flex} onSubmit={(e) => handleSubmit(e)}>
                 <TextField
+                  required
                   value={plant.name}
                   label="Namn"
                   onChange={(e) => handleChange("name", e.target.value)}
