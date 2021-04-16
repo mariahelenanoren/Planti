@@ -1,6 +1,7 @@
 import { makeStyles } from "@material-ui/core/styles";
 import classNames from "classnames";
 import { globalStyles } from "../style/globalStyles";
+import hero from "../assets/hero.png";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -49,11 +50,7 @@ export default function Hero() {
   const global = globalStyles();
   return (
     <div className={classNames(classes.root, global.maxWidth)}>
-      <img
-        className={classes.heroImage}
-        src="../../assets/hero.png"
-        alt="hero"
-      />
+      <img className={classes.heroImage} src={hero} alt="hero" />
       <div
         className={classNames(
           classes.quoteContainer,

@@ -2,6 +2,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import { Link } from "react-router-dom";
 import { globalStyles } from "../style/globalStyles";
 import { Plant } from "../helper";
+import { useState } from "react";
+import defaultImage from "../assets/defaultImage.jpg";
 
 const useStyles = makeStyles((theme) => ({
   card: {
@@ -36,6 +38,7 @@ interface Props {
 }
 
 export default function PlantCard(props: Props) {
+  const [imageSource, setImageSource] = useState(props.plant.imageUrl);
   const classes = useStyles();
   const global = globalStyles();
 
@@ -43,7 +46,11 @@ export default function PlantCard(props: Props) {
     <Link to={`/plants/${props.plant.id}`} className={global.link}>
       <div className={classes.card}>
         <div className={classes.imageContainer}>
-          <img alt={props.plant.name} src={props.plant.imageUrl} />
+          <img
+            alt={props.plant.name}
+            src={imageSource}
+            onError={() => setImageSource(defaultImage)}
+          />
         </div>
         <h3 className={global.textCenter}>{props.plant.name}</h3>
       </div>

@@ -7,6 +7,7 @@ import { makeRequest } from "../helper";
 import { Plant } from "../helper";
 import Grid from "@material-ui/core/Grid";
 import { Link } from "react-router-dom";
+import defaultImage from "../assets/defaultImage.jpg";
 
 const useStyles = makeStyles((theme) => ({
   plantContainer: {
@@ -58,9 +59,6 @@ const useStyles = makeStyles((theme) => ({
   data: {
     textAlign: "right",
   },
-  defaultImage: {
-    filter: "saturate(0) opacity(0.2)",
-  },
 }));
 
 interface Params {
@@ -72,8 +70,15 @@ interface Props extends RouteComponentProps<Params> {}
 export default function PlantDetailView(props: Props) {
   const classes = useStyles();
   const global = globalStyles();
+  const [imageSource, setImageSource] = useState(defaultImage);
   const id = props.match.params.id;
-  const [plant, setPlant] = useState<Plant>();
+  const [plant, setPlant] = useState<Plant>({
+    name: "",
+    height: "",
+    imageUrl: "",
+    description: "",
+    id: 0,
+  });
 
   const handleClick = async () => {
     const response = await makeRequest(`/api/plants`, "DELETE", { id: id });
@@ -88,6 +93,7 @@ export default function PlantDetailView(props: Props) {
       const response = await makeRequest(`/api/plants/${id}`, "GET");
       const returnedPlant = await response;
       setPlant(returnedPlant);
+      setImageSource(returnedPlant.imageUrl);
     };
     fetchPlant();
   }, [id]);
@@ -103,17 +109,11 @@ export default function PlantDetailView(props: Props) {
           <div
             className={classNames(classes.imageContainer, global.flexCenter)}
           >
-            {plant?.imageUrl ? (
-              <img alt={plant?.name || "En växt"} src={plant?.imageUrl} />
-            ) : (
-              <img
-                alt="En växt"
-                className={classes.defaultImage}
-                src={
-                  "https://images.unsplash.com/photo-1597305877032-0668b3c6413a?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
-                }
-              />
-            )}
+            <img
+              alt={plant?.name || "En växt"}
+              onError={() => setImageSource(defaultImage)}
+              src={imageSource}
+            />
           </div>
         </Grid>
         <Grid

@@ -6,6 +6,7 @@ import { FormEvent, useEffect, useState } from "react";
 import { makeRequest, Plant } from "../helper";
 import classNames from "classnames";
 import { Button, Hidden, TextField } from "@material-ui/core";
+import defaultImage from "../assets/defaultImage.jpg";
 
 const useStyles = makeStyles((theme) => ({
   main: {
@@ -51,6 +52,7 @@ interface Props extends RouteComponentProps<Params> {}
 export default function MainView(props: Props) {
   const classes = useStyles();
   const global = globalStyles();
+  const [imageSource, setImageSource] = useState(defaultImage);
   const id = props.match.params.id;
   const [plant, setPlant] = useState<Plant>({
     name: "",
@@ -81,6 +83,7 @@ export default function MainView(props: Props) {
       const response = await makeRequest(`/api/plants/${id}`, "GET");
       const returnedPlant = await response;
       setPlant(returnedPlant);
+      setImageSource(returnedPlant.imageUrl);
     };
     fetchPlant();
   }, [id]);
@@ -109,7 +112,10 @@ export default function MainView(props: Props) {
                 <TextField
                   value={plant.imageUrl}
                   label="Bild-url"
-                  onChange={(e) => handleChange("imageURL", e.target.value)}
+                  onChange={(e) => {
+                    handleChange("imageUrl", e.target.value);
+                    setImageSource(e.target.value);
+                  }}
                   InputLabelProps={{ shrink: true }}
                 />
                 <TextField
@@ -141,7 +147,14 @@ export default function MainView(props: Props) {
                   global.flexCenter
                 )}
               >
-                <img alt={plant?.name} src={plant?.imageUrl} />
+                <img
+                  onError={(e) => {
+                    setImageSource(defaultImage);
+                    console.log(e);
+                  }}
+                  alt={plant?.name}
+                  src={imageSource}
+                />
               </div>
             </Grid>
           </Hidden>
