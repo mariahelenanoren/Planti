@@ -4,6 +4,7 @@ import { Menu } from "@material-ui/icons";
 import classNames from "classnames";
 import { Hidden } from "@material-ui/core";
 import { Link } from "react-router-dom";
+import { createRef, useEffect, useState } from "react";
 
 const useStyles = makeStyles((theme) => ({
   header: {
@@ -12,6 +13,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "#ffff",
     height: "5rem",
     zIndex: 100,
+    transition: "top 0.25s ease",
   },
   headerInner: {
     height: "100%",
@@ -47,9 +49,44 @@ interface Props {
 export default function Header(props: Props) {
   const classes = useStyles();
   const global = globalStyles();
+  const [headerState, setHeaderState] = useState({
+    prevScrollPos: window.pageYOffset,
+    visible: true,
+  });
+  const heightRef = createRef<HTMLDivElement>();
+  const [headerHeight, setHeaderHeight] = useState(0);
+
+  useEffect(() => {
+    setHeaderHeight(heightRef.current?.offsetHeight || 0);
+  }, [heightRef]);
+
+  useEffect(function addEventListenerToWindow() {
+    function handleScroll() {
+      const currentScrollPos = window.pageYOffset;
+
+      const visible =
+        props.menuIsOpen === true ||
+        headerState.prevScrollPos >= currentScrollPos ||
+        currentScrollPos <= headerHeight;
+
+      setHeaderState({
+        prevScrollPos: window.pageYOffset,
+        visible,
+      });
+    }
+    window.addEventListener("scroll", handleScroll);
+
+    return function cleanup() {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  });
 
   return (
-    <div className={classNames(classes.header, global.padding)}>
+    <div
+      ref={heightRef}
+      className={classNames(classes.header, global.padding)}
+      style={{ top: headerState.visible ? 0 : "-5rem" }}
+    >
       <div
         className={classNames(
           classes.headerInner,

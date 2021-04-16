@@ -1,14 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import classNames from "classnames";
 import { globalStyles } from "../style/globalStyles";
 import { Link } from "react-router-dom";
+import { theme } from "../style/theme";
 
 const useStyles = makeStyles((theme) => ({
   menu: {
-    [theme.breakpoints.up("md")]: {
-      left: "-100% !important",
-    },
     width: "70%",
     height: "calc(100% - 5rem)",
     maxWidth: "20rem",
@@ -44,6 +42,20 @@ interface Props {
 export default function MobileMenu(props: Props) {
   const classes = useStyles();
   const global = globalStyles();
+
+  useEffect(() => {
+    function checkWindowWidth() {
+      window.innerWidth > theme.breakpoints.values.md
+        ? props.setMenuIsOpen(false)
+        : props.setMenuIsOpen(props.menuIsOpen);
+    }
+
+    window.addEventListener("resize", checkWindowWidth);
+
+    return function cleanup() {
+      window.removeEventListener("resize", checkWindowWidth);
+    };
+  });
 
   const handleClick = () => {
     props.setMenuIsOpen(!props.menuIsOpen);
