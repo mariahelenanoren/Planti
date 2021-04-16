@@ -2,11 +2,11 @@
 
 A place for you to store information about all of your loved ones – your plants.
 
-The server contains 5 endpoints: (GET, POST, PUT & DELETE) plus GET for a specific plant. These are defined inside server.rest. The data is stores inside the plants.js file.
+The server contains 5 endpoints: (GET, POST, PUT & DELETE) plus GET for a specific plant. These are defined inside server.rest. The data is stored inside the plants.js file.
 
 A new plant can be added from the "Dina växter" page (POST). From the individual plant page the item can be edited and removed (PUT & DELETE). The plants can be viewed from the startpage, "Dina växter" page and the individual plant page(GET).
 
-Built using react, typescript, express.js and Material UI.
+Built using React, Typescript, express.js and Material UI.
 
 ## Available Scripts
 
