@@ -4,7 +4,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import classNames from "classnames";
 import React, { useEffect, useState } from "react";
 import PlantCard from "../components/PlantCard";
-import { makeRequest, Plant } from "../helper";
+import { makeRequest } from "../helper";
+import { Plant } from "../interfaces";
 import { globalStyles } from "../style/globalStyles";
 
 const useStyles = makeStyles((theme) => ({

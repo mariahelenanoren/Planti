@@ -1,7 +1,7 @@
 import { makeStyles } from "@material-ui/core/styles";
 import { Link } from "react-router-dom";
 import { globalStyles } from "../style/globalStyles";
-import { Plant } from "../helper";
+import { Plant } from "../interfaces";
 import { useState } from "react";
 import defaultImage from "../assets/defaultImage.jpg";
 

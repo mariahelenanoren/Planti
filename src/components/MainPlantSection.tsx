@@ -3,7 +3,8 @@ import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
 import { globalStyles } from "../style/globalStyles";
 import classNames from "classnames";
-import { makeRequest, Plant } from "../helper";
+import { makeRequest } from "../helper";
+import { Plant } from "../interfaces";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 

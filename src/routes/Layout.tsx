@@ -11,6 +11,8 @@ import PlantDetailView from "./PlantDetailView";
 import EditView from "./EditView";
 import CreateView from "./CreateView";
 import PlantsView from "./PlantsView";
+import ArticlesView from "./ArticlesView";
+import ScrollTop from "../components/ScrollTop";
 
 const useStyles = makeStyles({
   main: {
@@ -25,21 +27,24 @@ export default function MainRoute() {
   return (
     <>
       <Router>
-        <MobileNavigation
-          menuIsOpen={menuIsOpen}
-          setMenuIsOpen={setMenuIsOpen}
-        />
-        <Header menuIsOpen={menuIsOpen} setMenuIsOpen={setMenuIsOpen} />
-        <div className={classNames(global.flex1, classes.main)}>
-          <Switch>
-            <Route exact path="/" component={MainView} />
-            <Route exact path="/plants" component={PlantsView} />
-            <Route exact path="/plants/create" component={CreateView} />
-            <Route exact path="/plants/:id" component={PlantDetailView} />
-            <Route path="/plants/:id/edit" component={EditView} />
-          </Switch>
-        </div>
-        <Footer />
+        <ScrollTop>
+          <MobileNavigation
+            menuIsOpen={menuIsOpen}
+            setMenuIsOpen={setMenuIsOpen}
+          />
+          <Header menuIsOpen={menuIsOpen} setMenuIsOpen={setMenuIsOpen} />
+          <div className={classNames(global.flex1, classes.main)}>
+            <Switch>
+              <Route exact path="/" component={MainView} />
+              <Route exact path="/plants" component={PlantsView} />
+              <Route exact path="/articles" component={ArticlesView} />
+              <Route exact path="/plants/create" component={CreateView} />
+              <Route exact path="/plants/:id" component={PlantDetailView} />
+              <Route path="/plants/:id/edit" component={EditView} />
+            </Switch>
+          </div>
+          <Footer />
+        </ScrollTop>
       </Router>
     </>
   );

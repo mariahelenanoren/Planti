@@ -1,7 +1,8 @@
 import { makeStyles } from "@material-ui/core/styles";
 import { globalStyles } from "../style/globalStyles";
 import React, { FormEvent, useState } from "react";
-import { makeRequest, Plant } from "../helper";
+import { makeRequest } from "../helper";
+import { Plant } from "../interfaces";
 import classNames from "classnames";
 import { Button, Grid, Hidden, TextField } from "@material-ui/core";
 import defaultImage from "../assets/defaultImage.jpg";

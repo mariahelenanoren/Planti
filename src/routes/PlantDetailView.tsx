@@ -4,7 +4,7 @@ import classNames from "classnames";
 import React, { useEffect, useState } from "react";
 import { RouteComponentProps } from "react-router";
 import { makeRequest } from "../helper";
-import { Plant } from "../helper";
+import { Plant } from "../interfaces";
 import Grid from "@material-ui/core/Grid";
 import { Link } from "react-router-dom";
 import defaultImage from "../assets/defaultImage.jpg";
