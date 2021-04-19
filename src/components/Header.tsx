@@ -111,7 +111,9 @@ export default function Header(props: Props) {
             <Link to={"/plants"} className={global.link}>
               <p>Dina växter</p>
             </Link>
-            <p>Artiklar</p>
+            <Link to={"/articles"} className={global.link}>
+              <p>Artiklar</p>
+            </Link>
           </Hidden>
         </div>
       </div>

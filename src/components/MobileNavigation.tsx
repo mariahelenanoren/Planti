@@ -74,7 +74,9 @@ export default function MobileMenu(props: Props) {
           <Link to={"/plants"} className={global.link} onClick={handleClick}>
             <li>Dina växter</li>
           </Link>
-          <li>Artiklar</li>
+          <Link to={"/articles"} className={global.link} onClick={handleClick}>
+            <li>Artiklar</li>
+          </Link>
         </ul>
       </nav>
     </div>

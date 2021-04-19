@@ -1,6 +1,9 @@
 import { makeStyles } from "@material-ui/core";
 import { ArrowForward } from "@material-ui/icons";
 import classNames from "classnames";
+import React from "react";
+import { Article } from "../interfaces";
+import { Link } from "react-router-dom";
 import { globalStyles } from "../style/globalStyles";
 
 const useStyles = makeStyles((theme) => ({
@@ -39,35 +42,34 @@ interface Props {
   article: Article;
 }
 
-interface Article {
-  title: string;
-  imageUrl: string;
-  category: string;
-  description: string;
-  intro: string;
-  body: string;
-}
-
 export default function ArticleCard(props: Props) {
   const global = globalStyles();
   const classes = useStyles();
 
   return (
-    <div className={classes.card}>
-      <img
-        className={classes.image}
-        alt={props.article.title}
-        src={props.article.imageUrl}
-      />
-      <div className={classes.cardInner}>
-        <div className={classNames(global.flex, classes.category)}>
-          <p>{props.article.category}</p>
-          <ArrowForward />
+    <Link
+      to={{
+        pathname: `/articles/${props.article.title}`,
+        state: { article: props.article },
+      }}
+      className={global.link}
+    >
+      <div className={classes.card}>
+        <img
+          className={classes.image}
+          alt={props.article.title}
+          src={props.article.imageUrl}
+        />
+        <div className={classes.cardInner}>
+          <div className={classNames(global.flex, classes.category)}>
+            <p>{props.article.category}</p>
+            <ArrowForward />
+          </div>
+          <hr />
+          <h3>{props.article.title}</h3>
+          <p>{props.article.description}</p>
         </div>
-        <hr />
-        <h3>{props.article.title}</h3>
-        <p>{props.article.description}</p>
       </div>
-    </div>
+    </Link>
   );
 }

@@ -13,6 +13,7 @@ import CreateView from "./CreateView";
 import PlantsView from "./PlantsView";
 import ArticlesView from "./ArticlesView";
 import ScrollTop from "../components/ScrollTop";
+import ArticleDetailView from "./ArticleDetailView";
 
 const useStyles = makeStyles({
   main: {
@@ -38,6 +39,7 @@ export default function MainRoute() {
               <Route exact path="/" component={MainView} />
               <Route exact path="/plants" component={PlantsView} />
               <Route exact path="/articles" component={ArticlesView} />
+              <Route path="/articles/:title" component={ArticleDetailView} />
               <Route exact path="/plants/create" component={CreateView} />
               <Route exact path="/plants/:id" component={PlantDetailView} />
               <Route path="/plants/:id/edit" component={EditView} />
