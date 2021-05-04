@@ -72,7 +72,7 @@ export default function MainView(props: Props) {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const response = await makeRequest(`/api/plants`, "PUT", plant);
+    const response = await makeRequest(`/api/plants/${id}`, "PUT", plant);
     const status = await response;
     if (status) {
       window.location.assign(`/plants/${id}`);

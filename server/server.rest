@@ -1,0 +1,17 @@
+GET http://localhost:5000/api/plants
+###
+
+GET http://localhost:5000/api/plants/:id
+
+###
+
+POST http://localhost:5000/api/plants
+Content-Type: application/json
+
+###
+
+PUT http://localhost:5000/api/plants
+
+###
+
+DELETE http://localhost:5000/api/plants

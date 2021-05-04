@@ -55,17 +55,17 @@ export default function PlantsView() {
         <h2 className={global.textCenter}>Dina Växter</h2>
         <Grid container spacing={3}>
           <Grid item xs={6} sm={4} md={3}>
-            <div
-              className={classNames(
-                classes.buttonCard,
-                classes.cardContainer,
-                global.flexCenter
-              )}
-            >
-              <Link to="/plants/create" className={global.link}>
+            <Link to="/plants/create" className={global.link}>
+              <div
+                className={classNames(
+                  classes.buttonCard,
+                  classes.cardContainer,
+                  global.flexCenter
+                )}
+              >
                 <p className={global.textCenter}>Lägg till ny växt</p>
-              </Link>
-            </div>
+              </div>
+            </Link>
           </Grid>
           {plants?.map((plant) => (
             <Grid item xs={6} sm={4} md={3} key={plant.id}>

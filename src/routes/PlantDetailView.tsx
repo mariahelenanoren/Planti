@@ -81,7 +81,7 @@ export default function PlantDetailView(props: Props) {
   });
 
   const handleClick = async () => {
-    const response = await makeRequest(`/api/plants`, "DELETE", { id: id });
+    const response = await makeRequest(`/api/plants/${id}`, "DELETE", plant);
     const status = await response;
     if (status) {
       window.location.assign("/");

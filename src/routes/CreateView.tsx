@@ -1,6 +1,6 @@
 import { makeStyles } from "@material-ui/core/styles";
 import { globalStyles } from "../style/globalStyles";
-import React, { FormEvent, useState } from "react";
+import React, { FormEvent, useEffect, useState } from "react";
 import { makeRequest } from "../helper";
 import { Plant } from "../interfaces";
 import classNames from "classnames";
@@ -62,9 +62,29 @@ export default function MainView() {
     }));
   };
 
+  useEffect(() => {
+    const fetchPlants = async () => {
+      const response = await makeRequest("/api/plants/", "GET");
+      const plants = await response;
+
+      if (plants) {
+        const id = plants[plants.length - 1].id + 1;
+        setPlant((prevState) => ({
+          ...prevState,
+          id: id,
+        }));
+      }
+    };
+    fetchPlants();
+  }, []);
+
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const response = await makeRequest(`/api/plants`, "POST", plant);
+    const response = await makeRequest(
+      `/api/plants/${plant.id}`,
+      "POST",
+      plant
+    );
     const status = await response;
     console.log(status);
     if (status) {

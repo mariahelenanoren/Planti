@@ -66,7 +66,7 @@ export default function MainPlantSection() {
   const [plants, setPlants] = useState<Plant[]>();
 
   const fetchPlants = async () => {
-    const response = await makeRequest(`/api/plants`, "GET");
+    const response = await makeRequest("/api/plants", "GET");
     const savedPlants = await response;
     setPlants(savedPlants);
   };
