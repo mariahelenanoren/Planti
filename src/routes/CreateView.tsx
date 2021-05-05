@@ -62,7 +62,7 @@ export default function MainView() {
     }));
   };
 
-  useEffect(() => {
+  /* useEffect(() => {
     const fetchPlants = async () => {
       const response = await makeRequest("/api/plants/", "GET");
       const plants = await response;
@@ -76,15 +76,11 @@ export default function MainView() {
       }
     };
     fetchPlants();
-  }, []);
+  }, []); */
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const response = await makeRequest(
-      `/api/plants/${plant.id}`,
-      "POST",
-      plant
-    );
+    const response = await makeRequest("/api/plants/", "POST", plant);
     const status = await response;
     console.log(status);
     if (status) {

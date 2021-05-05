@@ -24,7 +24,9 @@
     "web-vitals": "^1.1.1"
   },
   "scripts": {
-    "start": "concurrently \" react-scripts start \" \"cd server && npm start\"",
+    "start": "concurrently \" npm run start-client \" \" npm run start-server \"",
+    "start-client": "react-scripts start",
+    "start-server": "cd server && npm start",
     "install": "concurrently \" npm install \" \" cd server && npm install \"",
     "build": "react-scripts build",
     "test": "react-scripts test"
