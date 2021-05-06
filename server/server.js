@@ -4,7 +4,7 @@ const app = express();
 const fs = require("fs");
 
 const hostname = "localhost";
-const port = /* process.env.PORT || */ 5000;
+const port = process.env.PORT || 5000;
 
 app.use(express.json());
 
@@ -24,9 +24,9 @@ app.get("/api/plants/:id", (req, res) => {
 
 app.post("/api/plants", (req, res) => {
   const data = fs.readFileSync("./plants.json");
-  const plants = JSON.parse(data);
+  const plants = JSON.parse(data) || [];
   let newPlant = req.body;
-  newPlant.id = plants[plants.length - 1].id + 1;
+  newPlant.id = plants[plants.length - 1].id + 1 || 0;
 
   plants.push(newPlant);
   fs.writeFileSync("./plants.json", JSON.stringify(plants));
@@ -38,11 +38,10 @@ app.put("/api/plants/:id", (req, res) => {
   const plants = JSON.parse(data);
   const editedPlant = req.body;
 
-  const filteredPlants = plants.filter((p) => p.id !== editedPlant.id);
-  filteredPlants.push(editedPlant);
+  plants[editedPlant.id] = editedPlant;
 
-  fs.writeFileSync("./plants.json", JSON.stringify(filteredPlants));
-  res.json(filteredPlants);
+  fs.writeFileSync("./plants.json", JSON.stringify(plants));
+  res.json(plants);
 });
 
 app.delete("/api/plants/:id", (req, res) => {

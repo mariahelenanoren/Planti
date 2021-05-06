@@ -14,7 +14,7 @@ In the project directory, you can run:
 
 ### `npm install`
 
-Installs all the required dependencies.
+Installs all the required dependencies for both client and server.
 
 ### `npm start`
 
@@ -23,6 +23,14 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The server will automatically run on http://localhost:5000.
 
 The page will reload if you make edits.\
+
+### `npm run start-server`
+
+Starts the server.
+
+### `npm run start-client`
+
+Runs the app in the development mode.
 
 ### `npm test`
 

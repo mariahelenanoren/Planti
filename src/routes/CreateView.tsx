@@ -1,6 +1,6 @@
 import { makeStyles } from "@material-ui/core/styles";
 import { globalStyles } from "../style/globalStyles";
-import React, { FormEvent, useEffect, useState } from "react";
+import { FormEvent, useState } from "react";
 import { makeRequest } from "../helper";
 import { Plant } from "../interfaces";
 import classNames from "classnames";
