@@ -2,7 +2,7 @@ import { Button, makeStyles } from "@material-ui/core";
 import { globalStyles } from "../style/globalStyles";
 import classNames from "classnames";
 import React, { useEffect, useState } from "react";
-import { RouteComponentProps } from "react-router";
+import { RouteComponentProps, useHistory } from "react-router";
 import { makeRequest } from "../helper";
 import { Plant } from "../interfaces";
 import Grid from "@material-ui/core/Grid";
@@ -68,10 +68,12 @@ interface Params {
 interface Props extends RouteComponentProps<Params> {}
 
 export default function PlantDetailView(props: Props) {
+  const history = useHistory();
   const classes = useStyles();
   const global = globalStyles();
   const [imageSource, setImageSource] = useState(defaultImage);
   const id = props.match.params.id;
+  console.log(id);
   const [plant, setPlant] = useState<Plant>({
     name: "",
     height: "",
@@ -84,7 +86,7 @@ export default function PlantDetailView(props: Props) {
     const response = await makeRequest(`/api/plants/${id}`, "DELETE", plant);
     const status = await response;
     if (status) {
-      window.location.assign("/");
+      history.push("/plants");
     }
   };
 

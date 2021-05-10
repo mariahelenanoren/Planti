@@ -1,7 +1,7 @@
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import { globalStyles } from "../style/globalStyles";
-import { RouteComponentProps } from "react-router-dom";
+import { RouteComponentProps, useHistory } from "react-router-dom";
 import { FormEvent, useEffect, useState } from "react";
 import { makeRequest } from "../helper";
 import { Plant } from "../interfaces";
@@ -51,6 +51,7 @@ interface Params {
 interface Props extends RouteComponentProps<Params> {}
 
 export default function MainView(props: Props) {
+  const history = useHistory();
   const classes = useStyles();
   const global = globalStyles();
   const [imageSource, setImageSource] = useState(defaultImage);
@@ -75,7 +76,7 @@ export default function MainView(props: Props) {
     const response = await makeRequest(`/api/plants/${id}`, "PUT", plant);
     const status = await response;
     if (status) {
-      window.location.assign(`/plants/${id}`);
+      history.push(`/plants/${status.id}`);
     }
   };
 

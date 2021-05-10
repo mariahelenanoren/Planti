@@ -2,6 +2,15 @@ GET http://localhost:5000/api/plants
 ###
 
 GET http://localhost:5000/api/plants/:id
+Content-Type: application/json
+
+{
+    "name": "Guldpalm",
+    "imageUrl": "https://www.plantagen.se/dw/image/v2/BCMR_PRD/on/demandware.static/-/Sites-inriver-catalog/default/dw095c83c6/images/large/4017891219967_Original.jpg?sh=1236&sfrm=jpg",
+    "height": "100",
+    "description": "Frodig, lättskött och populär palm med vackra blad som ger inredningen en tropisk touch. Trivs i ljusa förhållanden, undvik direkt solljus. Låt den torka lätt mellan vattningarna. Gillar att bli duschad.",
+    "id": 0
+}
 
 ###
 
@@ -25,9 +34,18 @@ Content-Type: application/json
     "imageUrl": "https://www.plantagen.se/dw/image/v2/BCMR_PRD/on/demandware.static/-/Sites-inriver-catalog/default/dw095c83c6/images/large/4017891219967_Original.jpg?sh=1236&sfrm=jpg",
     "height": "100",
     "description": "Frodig, lättskött och populär palm med vackra blad som ger inredningen en tropisk touch. Trivs i ljusa förhållanden, undvik direkt solljus. Låt den torka lätt mellan vattningarna. Gillar att bli duschad.",
-    "id": 1
+    "id": 0
 }
 
 ###
 
 DELETE http://localhost:5000/api/plants/:id
+Content-Type: application/json
+
+{
+    "name": "Guldpalm",
+    "imageUrl": "https://www.plantagen.se/dw/image/v2/BCMR_PRD/on/demandware.static/-/Sites-inriver-catalog/default/dw095c83c6/images/large/4017891219967_Original.jpg?sh=1236&sfrm=jpg",
+    "height": "100",
+    "description": "Frodig, lättskött och populär palm med vackra blad som ger inredningen en tropisk touch. Trivs i ljusa förhållanden, undvik direkt solljus. Låt den torka lätt mellan vattningarna. Gillar att bli duschad.",
+    "id": 0
+}

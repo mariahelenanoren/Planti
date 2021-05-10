@@ -6,6 +6,7 @@ import { Plant } from "../interfaces";
 import classNames from "classnames";
 import { Button, Grid, Hidden, TextField } from "@material-ui/core";
 import defaultImage from "../assets/defaultImage.jpg";
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   main: {
@@ -43,6 +44,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function MainView() {
+  const history = useHistory();
   const classes = useStyles();
   const global = globalStyles();
   const [imageSource, setImageSource] = useState(defaultImage);
@@ -62,29 +64,13 @@ export default function MainView() {
     }));
   };
 
-  /* useEffect(() => {
-    const fetchPlants = async () => {
-      const response = await makeRequest("/api/plants/", "GET");
-      const plants = await response;
-
-      if (plants) {
-        const id = plants[plants.length - 1].id + 1;
-        setPlant((prevState) => ({
-          ...prevState,
-          id: id,
-        }));
-      }
-    };
-    fetchPlants();
-  }, []); */
-
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const response = await makeRequest("/api/plants/", "POST", plant);
     const status = await response;
     console.log(status);
     if (status) {
-      window.location.assign(`/plants/${status.id}`);
+      history.push(`/plants/${status.id}`);
     }
   };
 

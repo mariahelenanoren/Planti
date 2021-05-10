@@ -24,9 +24,14 @@ app.get("/api/plants/:id", (req, res) => {
 
 app.post("/api/plants", (req, res) => {
   const data = fs.readFileSync("./plants.json");
-  const plants = JSON.parse(data) || [];
+  const plants = JSON.parse(data);
   let newPlant = req.body;
-  newPlant.id = plants[plants.length - 1].id + 1 || 0;
+
+  if (plants.length) {
+    newPlant.id = plants[plants.length - 1].id + 1;
+  } else {
+    newPlant.id = 0;
+  }
 
   plants.push(newPlant);
   fs.writeFileSync("./plants.json", JSON.stringify(plants));
@@ -38,10 +43,14 @@ app.put("/api/plants/:id", (req, res) => {
   const plants = JSON.parse(data);
   const editedPlant = req.body;
 
-  plants[editedPlant.id] = editedPlant;
+  plants.forEach((plant, i) => {
+    if (plant.id === editedPlant.id) {
+      plants[i] = editedPlant;
+    }
+  });
 
   fs.writeFileSync("./plants.json", JSON.stringify(plants));
-  res.json(plants);
+  res.json(editedPlant);
 });
 
 app.delete("/api/plants/:id", (req, res) => {
