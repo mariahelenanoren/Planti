@@ -27,7 +27,8 @@
     "start": "npm-run-all --parallel start-client start-server",
     "start-server": "cd server && npm start",
     "start-client": "react-scripts start",
-    "install": "npm-run-all --parallel npm install cd server npm install",
+    "install-client": "npm install",
+    "install-server": "cd server && npm install",
     "build": "react-scripts build",
     "test": "react-scripts test"
   },

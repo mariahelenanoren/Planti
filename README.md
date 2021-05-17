@@ -12,9 +12,13 @@ Built using React, Typescript, express.js and Material UI.
 
 In the project directory, you can run:
 
-### `npm install`
+### `npm run install-client`
 
-Installs all the required dependencies for both client and server.
+Installs all the required dependencies for the client.
+
+### `npm run install-server`
+
+Installs all the required dependencies for the server.
 
 ### `npm start`
 
