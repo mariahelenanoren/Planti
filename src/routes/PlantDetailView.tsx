@@ -73,7 +73,6 @@ export default function PlantDetailView(props: Props) {
   const global = globalStyles();
   const [imageSource, setImageSource] = useState(defaultImage);
   const id = props.match.params.id;
-  console.log(id);
   const [plant, setPlant] = useState<Plant>({
     name: "",
     height: "",

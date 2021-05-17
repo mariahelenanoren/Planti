@@ -34,8 +34,12 @@ app.post("/api/plants", (req, res) => {
   }
 
   plants.push(newPlant);
-  fs.writeFileSync("./plants.json", JSON.stringify(plants));
-  res.json(newPlant);
+  fs.writeFile("./plants.json", JSON.stringify(plants), function (err) {
+    if (err) {
+      return console.log(err);
+    }
+    res.json(newPlant);
+  });
 });
 
 app.put("/api/plants/:id", (req, res) => {
@@ -49,8 +53,12 @@ app.put("/api/plants/:id", (req, res) => {
     }
   });
 
-  fs.writeFileSync("./plants.json", JSON.stringify(plants));
-  res.json(editedPlant);
+  fs.writeFile("./plants.json", JSON.stringify(plants), function (err) {
+    if (err) {
+      return console.log(err);
+    }
+    res.json(editedPlant);
+  });
 });
 
 app.delete("/api/plants/:id", (req, res) => {
@@ -60,8 +68,11 @@ app.delete("/api/plants/:id", (req, res) => {
   const deletedPlant = req.body;
   const filteredPlants = plants.filter((p) => p.id !== deletedPlant.id);
 
-  fs.writeFileSync("./plants.json", JSON.stringify(filteredPlants));
-  res.json(filteredPlants);
+  fs.writeFile("./plants.json", JSON.stringify(filteredPlants), function (err) {
+    if (!err) {
+      res.json(filteredPlants);
+    }
+  });
 });
 
 app.get("/", (req, res) => {
