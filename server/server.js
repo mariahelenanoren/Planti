@@ -7,7 +7,6 @@ const hostname = "localhost";
 const port = process.env.PORT || 5000;
 
 app.use(express.json());
-app.use(express.static(path.join(__dirname, "build")));
 
 app.get("/api/plants", (req, res) => {
   const data = fs.readFileSync("./plants.json");
@@ -77,7 +76,7 @@ app.delete("/api/plants/:id", (req, res) => {
   });
 });
 
-app.get("/*", (req, res) => {
+app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "build", "index.html"));
 });
 
