@@ -7,6 +7,7 @@ const hostname = "localhost";
 const port = process.env.PORT || 5000;
 
 app.use(express.json());
+app.use(express.static(path.join(__dirname, "build")));
 
 app.get("/api/plants", (req, res) => {
   const data = fs.readFileSync("./plants.json");
@@ -69,9 +70,10 @@ app.delete("/api/plants/:id", (req, res) => {
   const filteredPlants = plants.filter((p) => p.id !== deletedPlant.id);
 
   fs.writeFile("./plants.json", JSON.stringify(filteredPlants), function (err) {
-    if (!err) {
-      res.json(filteredPlants);
+    if (err) {
+      return console.log(err);
     }
+    res.json(filteredPlants);
   });
 });
 
