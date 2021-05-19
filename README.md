@@ -16,7 +16,7 @@ In the project directory, you can run:
 
 Installs all the required dependencies for the client.
 
-### `npm run install-server`
+### `npm run postinstall`
 
 Installs all the required dependencies for the server.
 
