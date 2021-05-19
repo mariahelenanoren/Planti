@@ -22,6 +22,8 @@ Installs all the required dependencies for the server.
 
 ### `npm start`
 
+Before starting the server, make sure to add `"proxy": "http://localhost:5000/"` in the root package.json file.
+
 Runs the app in the development mode and starts the server.
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The server will automatically run on http://localhost:5000.
