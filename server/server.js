@@ -7,7 +7,7 @@ const hostname = "localhost";
 const port = process.env.PORT || 5000;
 
 app.use(express.json());
-app.use(express.static(path.join(__dirname, "build")));
+app.use("/static", express.static(path.join(__dirname, "../build/static")));
 
 app.get("/api/plants", (req, res) => {
   const data = fs.readFileSync("./plants.json");
@@ -77,10 +77,12 @@ app.delete("/api/plants/:id", (req, res) => {
   });
 });
 
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "build", "index.html"));
+app.get("*", function (req, res) {
+  res.sendFile("index.html", {
+    root: path.join(__dirname, "../build/"),
+  });
 });
 
 app.listen(port, () => {
-  console.log(`Server is running on https://${hostname}:${port}`);
+  console.log(`Server is running on http://${hostname}:${port}`);
 });
