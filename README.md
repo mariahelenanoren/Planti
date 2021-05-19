@@ -12,7 +12,7 @@ Built using React, Typescript, express.js and Material UI.
 
 In the project directory, you can run:
 
-### `npm run install-client`
+### `npm install`
 
 Installs all the required dependencies for the client.
 
