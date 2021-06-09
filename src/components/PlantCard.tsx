@@ -4,6 +4,7 @@ import { globalStyles } from '../style/globalStyles';
 import { Plant } from '../interfaces';
 import { useState } from 'react';
 import defaultImage from '../assets/defaultImage.jpg';
+import classNames from 'classnames';
 
 const useStyles = makeStyles((theme) => ({
     card: {
@@ -15,22 +16,17 @@ const useStyles = makeStyles((theme) => ({
         flexDirection: 'column',
         backgroundColor: '#ffff',
         '& img': {
-            [theme.breakpoints.down('xs')]: {
-                height: '10rem',
-            },
+            flex: 1,
+            margin: 'auto',
+            maxHeight: '14rem',
             width: '100%',
-            height: '14rem',
             objectFit: 'contain',
+            objectPosition: 'center',
         },
         '& h3': {
             wordBreak: 'break-word',
             margin: '0.5rem 0 0 0',
         },
-    },
-    imageContainer: {
-        flex: 1,
-        display: 'flex',
-        alignItems: 'center',
     },
 }));
 
@@ -44,17 +40,16 @@ export default function PlantCard(props: Props) {
     const global = globalStyles();
 
     return (
-        <Link to={`/plants/${props.plant.id}`} className={global.link}>
-            <div className={classes.card}>
-                <div className={classes.imageContainer}>
-                    <img
-                        alt={props.plant.name}
-                        src={imageSource}
-                        onError={() => setImageSource(defaultImage)}
-                    />
-                </div>
-                <h3 className={global.textCenter}>{props.plant.name}</h3>
-            </div>
+        <Link
+            className={classNames(classes.card, global.link)}
+            to={`/plants/${props.plant.id}`}
+        >
+            <img
+                alt={props.plant.name}
+                src={imageSource}
+                onError={() => setImageSource(defaultImage)}
+            />
+            <h3 className={global.textCenter}>{props.plant.name}</h3>
         </Link>
     );
 }

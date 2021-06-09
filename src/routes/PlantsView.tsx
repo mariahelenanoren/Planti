@@ -1,4 +1,4 @@
-import { CircularProgress, Grid } from '@material-ui/core';
+import { Grid } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import classNames from 'classnames';
@@ -7,6 +7,7 @@ import PlantCard from '../components/PlantCard';
 import { makeRequest } from '../helper';
 import { Plant } from '../interfaces';
 import { globalStyles } from '../style/globalStyles';
+import Skeleton from '@material-ui/lab/Skeleton';
 
 const useStyles = makeStyles((theme) => ({
     plantsContainer: {
@@ -17,13 +18,10 @@ const useStyles = makeStyles((theme) => ({
             fontSize: '1.4rem',
         },
     },
-    cardContainer: {
-        height: '100%',
-        width: '100%',
-    },
     buttonCard: {
         padding: '2rem',
-        minHeight: '16rem',
+        height: '20rem',
+        width: '100%',
         backgroundColor: theme.palette.primary.main,
         '& p': {
             color: '#ffff',
@@ -57,41 +55,37 @@ export default function PlantsView() {
         <div className={classNames(classes.plantsContainer, global.padding)}>
             <div className={classNames(global.maxWidth)}>
                 <h2 className={global.textCenter}>Dina Växter</h2>
-                {!plants ? (
-                    <div
-                        className={classNames(
-                            global.flexCenter,
-                            classes.progressContainer
-                        )}
-                    >
-                        <CircularProgress color='primary' />
-                    </div>
-                ) : (
-                    <Grid container spacing={3}>
-                        <Grid item xs={6} sm={4} md={3}>
-                            <Link to='/plants/create' className={global.link}>
-                                <div
-                                    className={classNames(
-                                        classes.buttonCard,
-                                        classes.cardContainer,
-                                        global.flexCenter
-                                    )}
-                                >
-                                    <p className={global.textCenter}>
-                                        Lägg till ny växt
-                                    </p>
-                                </div>
-                            </Link>
-                        </Grid>
-                        {plants.map((plant) => (
-                            <Grid item xs={6} sm={4} md={3} key={plant.id}>
-                                <div className={classes.cardContainer}>
-                                    <PlantCard plant={plant} />
-                                </div>
-                            </Grid>
-                        ))}
+                <Grid container spacing={3}>
+                    <Grid xs={6} sm={4} md={3} item>
+                        <Link to='/plants/create' className={global.link}>
+                            <div
+                                className={classNames(
+                                    classes.buttonCard,
+                                    global.flexCenter
+                                )}
+                            >
+                                <p className={global.textCenter}>
+                                    Lägg till ny växt
+                                </p>
+                            </div>
+                        </Link>
                     </Grid>
-                )}
+                    {plants
+                        ? plants.map((plant) => (
+                              <Grid xs={6} sm={4} md={3} item key={plant.id}>
+                                  <PlantCard plant={plant} />
+                              </Grid>
+                          ))
+                        : [1, 2, 3, 4, 5, 6].map((s) => (
+                              <Grid xs={6} sm={4} md={3} item key={s}>
+                                  <Skeleton
+                                      variant='rect'
+                                      height='20rem'
+                                      width='100%'
+                                  />
+                              </Grid>
+                          ))}
+                </Grid>
             </div>
         </div>
     );
