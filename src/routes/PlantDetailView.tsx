@@ -15,6 +15,7 @@ const useStyles = makeStyles((theme) => ({
         height: '100%',
     },
     plantContainer: {
+        width: '100% !important',
         paddingTop: '2rem',
         paddingBottom: '2rem',
     },
@@ -47,7 +48,15 @@ const useStyles = makeStyles((theme) => ({
         flex: 1,
         marginTop: '1rem',
         alignItems: 'flex-end',
+        [theme.breakpoints.down('xs')]: {
+            flexDirection: 'column',
+            '& *': {
+                width: '100%',
+                marginRight: ' 0 !important',
+            },
+        },
         '& button': {
+            marginTop: '0.5rem',
             borderRadius: 0,
             paddingTop: '0.5rem',
             '&:first-of-type': {

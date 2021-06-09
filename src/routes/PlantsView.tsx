@@ -12,6 +12,7 @@ const useStyles = makeStyles((theme) => ({
     plantsContainer: {
         paddingTop: '2rem',
         paddingBottom: '2rem',
+        margin: '0 !important',
         '& h2': {
             fontSize: '1.4rem',
         },
