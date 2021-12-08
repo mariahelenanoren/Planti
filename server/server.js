@@ -1,30 +1,30 @@
-const path = require("path");
-const express = require("express");
+const path = require('path');
+const express = require('express');
 const app = express();
-const fs = require("fs");
+const fs = require('fs');
 
-const hostname = "localhost";
-const port = process.env.PORT || 5000;
+const hostname = 'localhost';
+const port = process.env.PORT || 4000;
 
 app.use(express.json());
-app.use("/static", express.static(path.join(__dirname, "../build/static")));
+app.use(express.static(path.join(__dirname, '../build')));
 
-app.get("/api/plants", (req, res) => {
-  const data = fs.readFileSync("./plants.json");
+app.get('/api/plants', (req, res) => {
+  const data = fs.readFileSync('./plants.json');
   const plants = JSON.parse(data);
   res.json(plants);
 });
 
-app.get("/api/plants/:id", (req, res) => {
-  const data = fs.readFileSync("./plants.json");
+app.get('/api/plants/:id', (req, res) => {
+  const data = fs.readFileSync('./plants.json');
   const plants = JSON.parse(data);
   const id = Number(req.params.id);
   const foundPlant = plants.find((plant) => plant.id === id);
   res.json(foundPlant);
 });
 
-app.post("/api/plants", (req, res) => {
-  const data = fs.readFileSync("./plants.json");
+app.post('/api/plants', (req, res) => {
+  const data = fs.readFileSync('./plants.json');
   const plants = JSON.parse(data);
   let newPlant = req.body;
 
@@ -35,7 +35,7 @@ app.post("/api/plants", (req, res) => {
   }
 
   plants.push(newPlant);
-  fs.writeFile("./plants.json", JSON.stringify(plants), function (err) {
+  fs.writeFile('./plants.json', JSON.stringify(plants), function (err) {
     if (err) {
       return console.log(err);
     }
@@ -43,8 +43,8 @@ app.post("/api/plants", (req, res) => {
   });
 });
 
-app.put("/api/plants/:id", (req, res) => {
-  const data = fs.readFileSync("./plants.json");
+app.put('/api/plants/:id', (req, res) => {
+  const data = fs.readFileSync('./plants.json');
   const plants = JSON.parse(data);
   const editedPlant = req.body;
 
@@ -54,7 +54,7 @@ app.put("/api/plants/:id", (req, res) => {
     }
   });
 
-  fs.writeFile("./plants.json", JSON.stringify(plants), function (err) {
+  fs.writeFile('./plants.json', JSON.stringify(plants), function (err) {
     if (err) {
       return console.log(err);
     }
@@ -62,14 +62,14 @@ app.put("/api/plants/:id", (req, res) => {
   });
 });
 
-app.delete("/api/plants/:id", (req, res) => {
-  const data = fs.readFileSync("./plants.json");
+app.delete('/api/plants/:id', (req, res) => {
+  const data = fs.readFileSync('./plants.json');
   const plants = JSON.parse(data);
 
   const deletedPlant = req.body;
   const filteredPlants = plants.filter((p) => p.id !== deletedPlant.id);
 
-  fs.writeFile("./plants.json", JSON.stringify(filteredPlants), function (err) {
+  fs.writeFile('./plants.json', JSON.stringify(filteredPlants), function (err) {
     if (err) {
       return console.log(err);
     }
@@ -77,9 +77,9 @@ app.delete("/api/plants/:id", (req, res) => {
   });
 });
 
-app.get("*", function (req, res) {
-  res.sendFile("index.html", {
-    root: path.join(__dirname, "../build/"),
+app.get('*', function (req, res) {
+  res.sendFile('index.html', {
+    root: path.join(__dirname, '../build/'),
   });
 });
 

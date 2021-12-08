@@ -25,7 +25,8 @@
     "web-vitals": "^1.1.1"
   },
   "scripts": {
-    "start": "npm-run-all --parallel start-client start-server",
+    "start": "npm run start-server",
+    "dev": "npm-run-all --parallel start-client start-server",
     "start-server": "cd server && npm start",
     "start-client": "react-scripts start",
     "postinstall": "cd server && npm install",
